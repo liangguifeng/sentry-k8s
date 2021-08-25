@@ -1,0 +1,38 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sentry-cron-deployment
+  namespace: f-paas
+  labels:
+    layer: f-paas
+    env: all
+    app: sentry-cron
+    name: sentry-cron-server
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        layer: f-paas
+        env: all
+        app: sentry-cron
+        name: sentry-cron-server
+    spec:
+      containers:
+      - name: sentry-cron
+        image: sentry:latest
+        imagePullPolicy: IfNotPresent
+        command: ["sentry","run","cron"]
+        env:
+        - name: SENTRY_SECRET_KEY
+          value: "#@%dx(raou4*913r_i*vd5r4@n-64!@2_xqkr!q0rh12+j0pu6"
+        - name: SENTRY_POSTGRES_HOST
+          value: "postgres"                      
+        - name: SENTRY_DB_PASSWORD
+          value: "secret"            
+        - name: SENTRY_DB_USER
+          value: "sentry"
+  selector:
+    matchLabels:
+      app: sentry-cron

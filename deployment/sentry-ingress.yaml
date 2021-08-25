@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: sentry-ingress
+  namespace: f-paas
+  labels:
+    layer: f-paas
+    env: all
+    app: sentry-redis
+    name: sentry-redis-server
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: app.example.com
+    http: 
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          serviceName: sentry-svc
+          servicePort: 30000
