@@ -26,7 +26,7 @@ spec:
         command: ["sentry","run","cron"]
         env:
         - name: SENTRY_SECRET_KEY
-          value: "#@%dx(raou4*913r_i*vd5r4@n-64!@2_xqkr!q0rh12+j0pu6"
+          value: "!0ldgtzze&0vpg%48nddj9tsx0kvfc@rc9a@a)im(@%3jh6r0!"
         - name: SENTRY_POSTGRES_HOST
           value: "postgres"                      
         - name: SENTRY_DB_PASSWORD
